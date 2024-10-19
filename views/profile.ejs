@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Responsive Table</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+      .my-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+        color: white;
+      }
+
+      .my-button:focus {
+        outline: none;
+      }
+
+      .pencil {
+        margin-left: 10px;
+      }
+
+      .username {
+        color: #ffd700; /* Gold color */
+        font-weight: bold; /* Bold text */
+        font-size: 1.5em; /* Increased font size */
+        text-decoration: underline; /* Underlined */
+      }
+
+      .header-container {
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: space-between; /* Space between items */
+      }
+
+      .header-text {
+        margin: 0; /* Remove default margin */
+      }
+
+      /* Increase height of the header */
+      .row.bg-primary {
+        padding: 20px 0; /* Add vertical padding to increase height */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row bg-primary">
+        <div class="col-md-9 header-container">
+          <h2 class="header-text">Manage Employees - Welcome, <span class="username"><%= username %></span></h2>
+        </div>
+        <div class="col-md-3">
+          <br>
+          <a href="/addnew">
+            <button type="button" class="btn btn-success">
+              <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add Employee
+            </button>
+          </a>
+          <form action="/logout" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger">
+              <span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Salary</th>
+              <th>Phone Number</th>
+              <th>Company Branch</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (employees.length > 0) { %>
+              <% employees.forEach(function(employee) { %>
+                <tr>
+                  <td><%= employee.employeename %></td>
+                  <td><%= employee.salary %></td>
+                  <td><%= employee.phoneno %></td>
+                  <td><%= employee.branch %></td>
+                  <td>
+                    <!-- Edit Button -->
+                    <a href="/edit/<%= employee._id %>" class="btn btn-primary">
+                      <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </a>
+                    <!-- Delete Button -->
+                    <form action="/delete/<%= employee._id %>" method="POST" style="display:inline;">
+                      <button type="submit" class="btn btn-danger pencil">
+                        <span class="glyphicon glyphicon-minus-sign"></span>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              <% }); %>
+            <% } else { %>
+              <tr>
+                <td colspan="5" style="text-align: center;">No employees found</td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+    <div class="mdbtn">
+      <br>
+      <div class="innbtns">
+         <a href="/addnew">
+           <button type="button" class="btn btn-success">
+             <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add Employee
+           </button>
+         </a>
+         <form action="/logout" method="POST" style="display:inline;">
+           <button type="submit" class="btn btn-danger">
+             <span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
+           </button>
+         </form>
+      </div>
+    </div>
+  </body>
+</html>

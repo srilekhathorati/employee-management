@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Employee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .my-button {
+            background-color: #007bff; /* Default background color */
+            color: white; /* Default text color */
+            border: none; /* Remove border */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Background color on hover */
+            color: white; /* Text color on hover */
+        }
+
+        .my-button:focus {
+            outline: none; /* Remove outline on focus */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add New Employee</h2>
+        <form action="/create" method="POST">
+            <div class="form-group">
+                <label for="employeename">Name:</label>
+                <input type="text" class="form-control" id="employeename" name="employeename">
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="number" class="form-control" id="salary" name="salary">
+            </div>
+            <div class="form-group">
+                <label for="phoneno">Phone Number:</label>
+                <input type="tel" class="form-control" id="phoneno" name="phoneno">
+            </div>
+            <div class="form-group">
+                <label for="branch">Company Branch:</label>
+                <input type="text" class="form-control" id="branch" name="branch">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Employee</button>
+            <a href="/profile" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>
